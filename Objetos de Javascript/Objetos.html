@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Objetos 101</title>
+
+    <!-- Importacion del jQuery -->
+    <script src="js/lib/jquery-2.1.4.min.js"></script>
+
+    <!-- Importacion del Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container text-center">
+      <h1>Objetos 101: <small>Comprendiendo lo básico</small></h1>
+      <hr />
+
+      <button id="encender" class="btn btn-primary">Encender</button>
+      <button id="apagar" class="btn btn-danger">Apagar</button>
+    </div>
+
+    <script>
+      var coche = {
+        encendido: false,
+        ruedas: 4,
+        puertas: 5,
+        fabricante: {
+          creador: "Seat",
+          telefono: "555-123674",
+          direcciOn: "Av. Avenida 3",
+        },
+        colores: ["azul", "blanco", "negro"],
+        arrancar: function () {
+          if (coche.encendido) {
+            console.log("El motor está ya encendido");
+          } else {
+            console.log("burrum burrum");
+            this.encendido = true;
+          }
+        },
+        apagar: function () {
+          if (!coche.encendido) {
+            console.log("El coche ya estaba apagado");
+          } else {
+            console.log("Apagando el motor");
+            this.encendido = false;
+          }
+        },
+      };
+
+      var fab = coche.fabricante;
+
+      console.log(fab.direcciOn); //av. avenida
+
+      fab.direcciOn = "C. Calle";
+
+      console.log(fab.direcciOn); //c. calle
+
+      console.log(coche.fabricante.direcciOn); // c. calle AL CAMBIAR FAB CAMBIA COCHE.FABRICANTE PORQUE TRABAJA POR REFERENCIA Y AFECTA AL ORIGEN
+
+      $("#encender").on("click", function () {
+        coche.arrancar();
+      });
+
+      $("#apagar").on("click", function () {
+        coche.apagar();
+      });
+    </script>
+  </body>
+</html>

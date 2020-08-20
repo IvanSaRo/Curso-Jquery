@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Presentacion de Vehículo</title>
+
+  
+    <script src="js/lib/jquery-2.1.4.min.js"></script>
+
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container text-center">
+      <h1>Objetos Prácticos: <small>Ejemplo de vehículo</small></h1>
+      <hr />
+
+      <div class="divPreloader">
+        <img src="img/loading.gif" class="imgLoader img-responsive" />
+      </div>
+
+      <div class="divVistaPrevia">
+        <img class="img-responsive" id="imgCarro" />
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-5">
+          <select id="cmbColor" class="form-control">
+            <!--    <option value="blanco">Blanco</option> -->
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var teslaView = {
+          loader: $(".divPreloader"),//defines a este objeto como el laader >45
+          colores: ["blanco", "verde", "gris", "cafe"],
+
+          // función para cambiar la imagen con el color adecuado
+          cambiaColor: function (img) {
+            var $loader = teslaView.loader; // <40 lo cargas en una variable para aplicarle fade
+            $loader.fadeIn(150);
+
+            if (img === undefined) {// al cargar por primera vez img será undefined y cargará [0] evitando poner una imagen estática en el html, asegurándonos que no queda vacía si esa imagen falla
+              var color = teslaView.colores[0];
+              img = "img/tesla/models-" + color + ".jpg";
+            }
+
+            $("<img>", {
+              src: img,
+              class: "img-responsive",
+            }).load(function () { //cuando la img creada se cargue disparará la función que borra del DOM la imagan actual y carga la nueva
+              $(".divVistaPrevia").find("img").remove();
+              $(this).appendTo(".divVistaPrevia");
+
+              $loader.fadeOut(150);
+            });
+          },
+          // función principal
+          init: function (opciones) {
+            $.extend(teslaView, opciones);// extends pega al objeto teslaview lo que venga por parámetro, en este caso son colores
+
+            // for para barrer el array de colores e ir cargándolas como options en el select
+            for (let i = 0; i < teslaView.colores.length; i++) {
+              var color = teslaView.colores[i];
+
+              $("<option>", {
+                value: color,
+                text: color,
+              }).appendTo("#cmbColor");
+            }
+            // pegamos la función para detectar el cambio en el select
+            $("#cmbColor").bind("change", function () {
+              var color = $(this).val();
+              var url = "img/tesla/modelS-" + color + ".jpg";
+
+              teslaView.cambiaColor(url);
+            });
+            //hace el cambio de imagen al iniciar, dando undefined 
+            teslaView.cambiaColor();
+          },
+        };
+        teslaView.init
+        ({
+          colores: ["rojo", "verde", "gris", "cafe", "negro"],//si no enviamos estos colores se cargarán los que están definidos arriba
+        });
+      })();
+    </script>
+  </body>
+</html>

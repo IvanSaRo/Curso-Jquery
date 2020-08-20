@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Lección 02 - Selectores y Encadenamiento</title>
+
+    <!-- Importacion del jQuery -->
+    <script src="js/lib/jquery-2.1.4.min.js"></script>
+
+    <!-- Importacion del Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+    <!-- Estilo para esta pagina -->
+    <style>
+      img {
+        width: 200px;
+        height: 200px;
+      }
+
+      hr {
+        margin-bottom: 60px;
+      }
+      .amarillo {
+        color: yellow;
+      }
+      .verde {
+        color: green;
+      }
+      .azul {
+        color: blue;
+      }
+      .naranja {
+        color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Selectores y Encadenamiento</h1>
+      <hr />
+
+      <div class="row text-center">
+        <div class="col-sm-4">
+          <img src="img/nophoto.jpg" class="img-circle" />
+          <h4>Juan Sobrino</h4>
+        </div>
+
+        <div class="col-sm-5">
+          <h1>Ésto es el título</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam
+            aspernatur ab commodi tenetur, quisquam.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam
+            aspernatur ab commodi tenetur, quisquam.
+          </p>
+        </div>
+
+        <div class="col-sm-3">
+          <ul>
+            <li>Matemática</li>
+            <li>Programación</li>
+            <li>Análisis</li>
+            <li>Física</li>
+            <li>Geografía</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* $("img").attr("src", "img/profesor.jpg"); CAMBIA LA FOTO
+
+      $("img").removeClass("img-circle"); QUITA LA CLASE CIRCULAR
+
+      $("img").addClass("img-thumbnail"); HACE LA IMAGEN CUADRADA CON BORDES REDONDEADOS */
+
+      /* ENCADENAMIENTO */
+      $("img")
+        .attr("src", "img/profesor.jpg")
+        .removeClass("img-circle")
+        .addClass("img-thumbnail");
+
+      /* modificaciones */
+
+      $(".col-sm-5").find("p").text("Hola, qué tal, holaquepasaquétal");
+      $(".col-sm-5")
+        .find("h1")
+        .html("Hola, qué tal,<strong> holaquepasaquétal</strong>");
+
+      /* referencia a la lista ordenada */
+
+      $("ul li").eq(1).css("color", "red");
+      //eq nos permite elegir cuál de los elementos d euna lista vamos a usar
+
+      $("ul li")
+        .eq(0)
+        .addClass("verde")
+        .end()// el end es para que el selector pueda seguir cogiendo elementos del array
+        .eq(2)
+        .addClass("azul")
+        .end()
+        .eq(3)
+        .addClass("naranja")
+        .end()
+        .eq(4)
+        .addClass("amarillo")
+        .end();
+      // en este tipo de selecciones hay que añadirle la funcion .end() para que vaya al siguiente
+    </script>
+  </body>
+</html>

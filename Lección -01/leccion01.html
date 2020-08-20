@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lección 1</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <style>
+      .verde {
+        color: green;
+      }
+    </style>
+    <script src="./jquery.js"></script>
+  </head>
+  <body>
+    <h1>Probando bootstrap</h1>
+
+    <div class="container">
+      <ul>
+        <li><span class="label label-primary">Hola1</span></li>
+        <li>Hola2</li>
+        <li>Hola3</li>
+      </ul>
+      <ol>
+        <li>Adios1</li>
+        <li>Adios2</li>
+        <li>Adios3</li>
+
+        <p class="bg-info">Vamos a ver si esta mierda funciona</p>
+      </ol>
+    </div>
+
+    <script>
+      /*  jQuery("ul").css("color", "red");
+      jQuery("ol").addClass("verde");
+      jQuery("ul").css("font-weight", "bold"); */
+
+      /*   $(document).ready(function () {
+        $("ul").css("color", "red");
+        $("ol").addClass("verde");
+        $("ul").css("font-weight", "bold");
+      }); */
+
+      $(function () {
+        jQuery("ul").css("color", "red");
+
+        jQuery("ul").css("font-weight", "bold");
+      });
+
+      $(function () {
+        $("li:first-child").addClass("verde");
+      });
+    </script>
+  </body>
+</html>
